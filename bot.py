@@ -1,5 +1,3 @@
-
-
 import requests
 import time
 
@@ -14,7 +12,7 @@ def send_alert(text):
 
 print("Bot starting... (Looking for 10k-300k MC coins)")
 
-# Test message so you know it's working
+# Test message
 send_alert("✅ Test message - Your bot is working! Wait for real coins.")
 
 seen = set()
@@ -38,7 +36,6 @@ while True:
                         if pair["info"].get("websites") or pair["info"].get("socials"):
                             has_socials = True
                     
-                    # Filters for early 10k-300k coins with some rug protection
                     if (8000 < mc < 300000 and 
                         liq > 5000 and 
                         2 < age_min < 240 and 
@@ -49,4 +46,10 @@ while True:
                         name = pair["baseToken"].get("symbol", "Unknown")
                         link = pair.get("url", "")
                         
-                        msg = f"🚀 Early Robinhood Chain coin!\n\n{name}\n\nCA: <code>{ca}</code>\n\nMC: ${mc:,.0f}\nLi
+                        msg = f"🚀 Early Robinhood Chain coin!\n\n{name}\n\nCA: {ca}\n\nMC: ${mc:,.0f}\nLiq: ${liq:,.0f}\nAge: {int(age_min)} min\n\nLink: {link}\n\nCopy the CA above!"
+                        send_alert(msg)
+                        print("Alert sent for:", ca, "MC:", mc)
+    except:
+        pass
+    
+    time.sleep(15)
