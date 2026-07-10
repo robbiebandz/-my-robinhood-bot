@@ -10,7 +10,7 @@ def send_alert(text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     requests.post(url, json={"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"})
 
-print("Bot starting... (Looking for 10k-300k MC coins)") send_alert("✅ Test message - Your bot is working! Wait for real coins.")
+print("Bot starting... (Looking for 10k-300k MC coins)send_alert("✅ Test message - Your bot is working! Wait for real coins.")
 
 seen = set()
 
