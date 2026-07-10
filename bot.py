@@ -12,8 +12,6 @@ def send_alert(text):
 
 print("Bot starting... (Looking for 10k-300k MC coins)")
 
-# Test message
-send_alert("✅ Test message - Your bot is working! Wait for real coins.")
 
 seen = set()
 
