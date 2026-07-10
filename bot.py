@@ -2,8 +2,8 @@ import requests
 import time
 
 # === CHANGE THESE TWO LINES ===
-TELEGRAM_TOKEN = "PUT_YOUR_LONG_TOKEN_HERE"
-CHAT_ID = "PUT_YOUR_CHAT_ID_NUMBER_HERE"
+TELEGRAM_TOKEN = "8840027780:AAFel6SFEpNIpgK4gN6FrXv_plbtMNegSxQ"
+CHAT_ID = "5985490720"
 # ===================================
 
 def send_alert(text):
