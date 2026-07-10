@@ -10,7 +10,7 @@ def send_alert(text):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
     requests.post(url, json={"chat_id": CHAT_ID, "text": text, "parse_mode": "HTML"})
 
-print("Bot starting... (Looking for 10k-300k MC coins)")
+print("Bot starting... (Looking for new launched coins on Robinhood Chain)")
 
 seen = set()
 
@@ -28,16 +28,12 @@ while True:
                     liq = pair.get("liquidity", {}).get("usd", 0) or 0
                     ca = pair["baseToken"]["address"]
                     
-                    has_socials = False
-                    if pair.get("info"):
-                        if pair["info"].get("websites") or pair["info"].get("socials"):
-                            has_socials = True
-                    
-                    if (8000 < mc < 300000 and liq > 5000 and 2 < age_min < 240 and has_socials and ca not in seen):
+                    # Very new launches only
+                    if (8000 < mc < 300000 and liq > 5000 and age_min < 30 and ca not in seen):
                         seen.add(ca)
                         name = pair["baseToken"].get("symbol", "Unknown")
                         link = pair.get("url", "")
-                        msg = f"🚀 Early Robinhood Chain coin! {name} CA: {ca} MC: ${mc:,.0f} Link: {link} Copy the CA above!"
+                        msg = f"🚀 New Robinhood Chain coin! {name} CA: {ca} MC: ${mc:,.0f} Liq: ${liq:,.0f} Age: {int(age_min)} min Link: {link} Copy the CA above!"
                         send_alert(msg)
                         print("Alert sent for:", ca, "MC:", mc)
     except:
