@@ -28,7 +28,7 @@ while True:
                     liq = pair.get("liquidity", {}).get("usd", 0) or 0
                     ca = pair["baseToken"]["address"]
                     
-                    # Very new launches only
+                    # No social requirement
                     if (8000 < mc < 300000 and liq > 5000 and age_min < 30 and ca not in seen):
                         seen.add(ca)
                         name = pair["baseToken"].get("symbol", "Unknown")
